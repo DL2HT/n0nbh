@@ -103,7 +103,7 @@ def main():
     ]
 
     width, height = 640, 300
-    img = Image.new("RGB", (width, height), (255, 255, 255))
+    img = Image.new("RGB", (width, height), (242, 242, 242))  # #f2f2f2 hellgrau
     draw = ImageDraw.Draw(img)
 
     try:
