@@ -57,16 +57,17 @@ def classify_xray(xray_str):
         return ("X-Flare - HF-Blackouts moeglich", "X-flare - HF blackouts possible")
 
 def main():
+    # XML laden
     resp = requests.get(XML_URL, timeout=15)
     resp.raise_for_status()
 
+    # Struktur: <solar><solardata>...</solardata></solar>
     root = ET.fromstring(resp.content)
-    item = root.find("./channel/item/solardata")
+    item = root.find("solardata")
     if item is None:
-        item = root.find("./channel/item")
-    if item is None:
-        raise SystemExit("Konnte solardata-Element nicht finden")
+        raise SystemExit("Konnte <solardata> im XML nicht finden")
 
+    # Werte holen
     sfi = float(safe_get(item, "solarflux", "0") or 0)
     sn = safe_get(item, "sunspots", "?")
     a = int(float(safe_get(item, "aindex", "0") or 0))
@@ -136,3 +137,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+   
+
+  
