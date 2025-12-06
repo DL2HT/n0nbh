@@ -129,8 +129,8 @@ def main():
         draw.text((10, y), line, font=font_small, fill=(0, 0, 0))
         y += 18
 
-    footer = "Data source: hamqsl.com / N0NBH"
-   bbox = draw.textbbox((0,0), footer, font=font_small)
+footer = "Data source: hamqsl.com / N0NBH"
+bbox = draw.textbbox((0,0), footer, font=font_small)
 fw = bbox[2] - bbox[0]
 fh = bbox[3] - bbox[1]
 draw.text((width - fw - 10, height - fh - 4), footer, font=font_small, fill=(0, 0, 0))
