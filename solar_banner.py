@@ -130,10 +130,14 @@ def main():
         y += 18
 
     footer = "Data source: hamqsl.com / N0NBH"
-    bbox = draw.textbbox((0,0), footer, font=font_small)
-    fw = bbox[2] - bbox[0]
-    fh = bbox[3] - bbox[1]
-    draw.text((width - fw - 10, height - fh - 4), footer, font=font_small, fill=(0, 0, 0))
+        # Zeitstempel unten links
+    ts = f"Stand: {now_utc}"
+    ts_bbox = draw.textbbox((0, 0), ts, font=font_small)
+    ts_fw = ts_bbox[2] - ts_bbox[0]
+    ts_fh = ts_bbox[3] - ts_bbox[1]
+
+    # Zeitstempel unten links (10 Pixel Abstand)
+    draw.text((10, height - ts_fh - 4), ts, font=font_small, fill=(0, 0, 0))
 
     img.save(OUTFILE)
 
