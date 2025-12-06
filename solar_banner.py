@@ -130,8 +130,10 @@ def main():
         y += 18
 
     footer = "Data source: hamqsl.com / N0NBH"
-    fw, fh = draw.textsize(footer, font=font_small)
-    draw.text((width - fw - 10, height - fh - 4), footer, font=font_small, fill=(0, 0, 0))
+   bbox = draw.textbbox((0,0), footer, font=font_small)
+fw = bbox[2] - bbox[0]
+fh = bbox[3] - bbox[1]
+draw.text((width - fw - 10, height - fh - 4), footer, font=font_small, fill=(0, 0, 0))
 
     img.save(OUTFILE)
 
